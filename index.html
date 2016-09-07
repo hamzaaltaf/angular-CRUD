@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html  ng-app="eggly">
+<head>
+<title>Realist an Real_Estate Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Realist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+
+
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Grand+Hotel:400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet:100,300,400,500,600,700,800,900' type='text/css'>
+</head>
+
+<body>
+  <div ng-controller="mainctrl">
+    <nav class="navbar navbar-default" >
+      <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" ng-repeat="cat in categories">
+            <li class=""><a href="#" ng-click="setCurrentCategory(cat)" ng-class="active":isCurrentCategory(cat)>{{cat.name}}</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <ul class="bookmarks" ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
+      <li>
+        <span><button class="btn btn-danger" ng-click="setEditedBookmark(bookmark);startEditing()">Edit</button><button class="btn btn-primary" ng-click="startCreating()">Create</button></span><a href="#">{{bookmark.title}}</a>
+      </li>
+      <li>
+        <button class="pull-right btn btn-warning" ng-click="deleteBookmark(bookmark)">delete</button>
+      </li>
+      <hr>
+    </ul>
+
+    <div ng-if=shouldShowCreating()>
+        <form class="row form-control" ng-show="iscreating" ng-submit="createBookmark(newBookmark)">
+          <input type="text" class="col-xs-4 form-control" ng-model = "newBookmark.title" placeholder="enter a bookmark">
+          <input type="text" class="col-xs-4 form-control" ng-model = "newBookmark.url" placeholder="enter a url">
+          <button  type="submit" class="btn btn-primary">Create</button>
+          <button class="text pull-right" ng-click="cancelCreating()">Cancel</button>
+        </form>
+    </div>
+    <div ng-if=shouldShowEditing()>
+      <form class="row form-control" ng-show="isediting" ng-submit="updateBookmark(editedBookmark)">
+        <input type="text" class="col-xs-4 form-control" ng-model = "editedBookmark.title" placeholder="enter a bookmark">
+        <input type="text" class="col-xs-4 form-control" ng-model = "editedBookmark.url" placeholder="enter a url">
+        <button  type="submit" class="btn btn-primary">Create</button>
+      </form>
+      <button class="btn btn-primary pull-right" ng-click="cancelEditing()">Cancel</button>
+    </div>
+  </div>
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.js"></script>
+<script src="app/controller.js"></script>
+</html>
